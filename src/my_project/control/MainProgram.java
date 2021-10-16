@@ -1,3 +1,5 @@
+package my_project.control;
+
 import KAGO_framework.Config;
 import KAGO_framework.control.MainController;
 

@@ -2,8 +2,7 @@ package KAGO_framework.view;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.InteractiveGraphicalObject;
-import KAGO_framework.view.DrawTool;
-import my_project.control.ProgramController;
+import my_project.view.ProgramController;
 import java.awt.event.MouseEvent;
 
 /**

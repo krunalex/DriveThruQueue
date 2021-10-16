@@ -9,11 +9,12 @@ public class House extends GraphicalObject {
         //Ein leerer Konstruktor erscheint!
     }
 
-    @Override
+    /**@Override
     public void draw(DrawTool drawTool) {
         //Hier wird ein Rechteck gezeichnet.
         drawTool.drawRectangle(200,200,30,50);
         //Hier wird ein Dreieck gezeichnet. Hierzu müssen drei Punkte angegeben werden. Jeder Punkt wiederum besteht aus zwei Zahlen.
         drawTool.drawTriangle(200,200,230,200,215,175);
     }
+    **/
 }

@@ -5,7 +5,6 @@ import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
 import my_project.model.Auto;
 import my_project.model.DriveThru;
-import my_project.model.House;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -38,16 +37,14 @@ public class ProgramController {
      */
     public void startProgram() {
         //Hier wird eine lokale Referenz für ein House-Objekt angelegt.
-        House firstHouse = new House();
         DriveThru firstDriveThru = new DriveThru();
-        Auto firstAuto = new Auto(1, "Burger", 400 ,300);
-        Auto secondAuto = new Auto(2, "Pizza", 600 ,300);
-        Auto thirdAuto = new Auto(3, "Salat", 800 ,300);
+        Auto firstAuto = new Auto(1, "" , 400 ,300);
+        Auto secondAuto = new Auto(2,"", 600 ,300);
+        Auto thirdAuto = new Auto(3, "", 800 ,300);
 
 
         //Damit die draw-Methode des Objekts hinter firstHouse aufgerufen wird,
         //muss dem ViewController-Objekt mitgeteilt werden, dass es das House-Objekt zeichnen soll.
-        viewController.draw(firstHouse);
         viewController.draw(firstDriveThru);
         viewController.draw(firstAuto);
         viewController.draw(secondAuto);

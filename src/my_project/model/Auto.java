@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.view.ProgramController;
 
 public class Auto extends GraphicalObject {
 
@@ -53,5 +54,8 @@ public class Auto extends GraphicalObject {
         drawTool.drawFilledCircle(x+130, y+70, 20);
     }
 
+    public void update(double dt) {
+        x = x - dt * 60;
+    }
 }
 

@@ -5,8 +5,6 @@ import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
 import my_project.model.Auto;
 import my_project.model.DriveThru;
-
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -15,11 +13,12 @@ import java.awt.event.MouseEvent;
  */
 public class ProgramController {
 
-    //Attribute
-
-
     // Referenzen
-    private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private DriveThru firstDriveThru;
+    private Auto firstAuto;
+    private Auto secondAuto;
+    private Auto thirdAuto;
 
     /**
      * Konstruktor
@@ -36,18 +35,16 @@ public class ProgramController {
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Achtung: funktioniert nicht im Szenario-Modus
      */
     public void startProgram() {
-        //Hier wird eine lokale Referenz für ein House-Objekt angelegt.
-        DriveThru firstDriveThru = new DriveThru();
-        Auto firstAuto = new Auto(1, "" , 400 ,300);
-        Auto secondAuto = new Auto(2,"", 600 ,300);
-        Auto thirdAuto = new Auto(3, "", 800 ,300);
-
-
-        //Damit die draw-Methode des Objekts hinter firstHouse aufgerufen wird,
-        //muss dem ViewController-Objekt mitgeteilt werden, dass es das House-Objekt zeichnen soll.
+        firstDriveThru = new DriveThru(200,200,15,200);
         viewController.draw(firstDriveThru);
+
+        firstAuto = new Auto(1, "" , 400 ,300);
         viewController.draw(firstAuto);
+
+        secondAuto = new Auto(2,"", 600 ,300);
         viewController.draw(secondAuto);
+
+        thirdAuto = new Auto(3, "", 800 ,300);
         viewController.draw(thirdAuto);
     }
 
@@ -58,7 +55,9 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-
+        if(firstAuto.collidesWith(firstDriveThru)){
+            firstAuto.setX(500);
+        }
     }
 
 

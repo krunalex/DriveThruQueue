@@ -9,6 +9,7 @@ public class Auto extends GraphicalObject {
     private int nummer;
     private String bestellung;
     private boolean bedient;
+    private boolean bewegtSich;
 
     public Auto (int nummer, String bestellung, int x, int y){
         randomBestellung();
@@ -16,6 +17,11 @@ public class Auto extends GraphicalObject {
         this.y = y;
         this.nummer = nummer;
         this.bestellung = randomBestellung();
+        bewegtSich = true;
+    }
+
+    public boolean isBewegtSich() {
+        return bewegtSich;
     }
 
     public int getNummer() {
@@ -30,6 +36,10 @@ public class Auto extends GraphicalObject {
         this.bedient = bedient;
     }
 
+    /**
+     * Generiert eine zuf&auml;llige Zahl, basierend auf dieser Zahl wird String bestellung auf etwas gesetzt
+     * @return bestellung - gibt den wert zur&uuml;ck auf den bestellung gerade gesetzt wurde
+     */
     public String randomBestellung() {
         int zufallsZahl = (int) (Math.random() * 3 + 1);
 
@@ -45,6 +55,10 @@ public class Auto extends GraphicalObject {
         return bestellung;
     }
 
+    /**
+     * Zeichnet die Autos
+     * @param drawTool f&uuml;r die draw Methoden ben&ouml;tigt
+     */
     public void draw(DrawTool drawTool){
         drawTool.drawText(x+20,y-60,"Nr. " + nummer + ", Bestellung: " + bestellung);
         drawTool.drawRectangle(x,y,150,60);
@@ -54,8 +68,28 @@ public class Auto extends GraphicalObject {
         drawTool.drawFilledCircle(x+130, y+70, 20);
     }
 
-    public void update(double dt) {
-        x = x - dt * 60;
+    /**
+     * Sorgt daf&uuml;r, dass das Auto sich mit 60 pixel pro Sekunde nach links bewegt, sofern die Methode durchgehend aufgerufen wird und bewegtSich true ist
+     * @param dt Z&auml;hlt Zeit
+     */
+    public void bewegeAuto(double dt){
+        if(bewegtSich){
+            x = x - dt * 60;
+        }
+    }
+
+    /**
+     * Setzt bewegtSich auf false, wodurch das Auto aufhört sich zu bewegen, auch wenn bewegeAuto aufgerufen wird
+     */
+    public void stop(){
+        bewegtSich = false;
+        //TODO Einen Parameter für eine Art "immunität" hierzu hinzufügen, damit das Auto nach der Bestellung weiter fahren kann auch wenn es denn DriveThru noch berührt
+    }
+
+    /**
+     * Setzt bewegtSich auf true, wodurch sich das Auto wieder weiter bewegt, falls bewegtSich vorher auf false war
+     */
+    public void start(){
+        bewegtSich = true;
     }
 }
-

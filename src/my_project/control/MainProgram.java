@@ -1,9 +1,6 @@
 package my_project.control;
 
-import KAGO_framework.Config;
 import KAGO_framework.control.MainController;
-import my_project.control.Queue;
-import my_project.model.Auto;
 
 public class MainProgram {
 
@@ -17,6 +14,5 @@ public class MainProgram {
      */
     public static void main (String[] args){
         MainController.startFramework();
-        Queue myQueue = new Queue();
     }
 }

@@ -15,7 +15,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private DriveThru firstDriveThru;
+    private DriveThru driveThru;
     private Auto firstAuto;
     private Auto secondAuto;
     private Auto thirdAuto;
@@ -35,17 +35,20 @@ public class ProgramController {
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Achtung: funktioniert nicht im Szenario-Modus
      */
     public void startProgram() {
-        firstDriveThru = new DriveThru(200,200,15,200);
-        viewController.draw(firstDriveThru);
+        driveThru = new DriveThru(200,200,15,200);
+        viewController.draw(driveThru);
 
         firstAuto = new Auto(1, "" , 400 ,300);
         viewController.draw(firstAuto);
+        driveThru.anstellen(firstAuto);
 
         secondAuto = new Auto(2,"", 600 ,300);
         viewController.draw(secondAuto);
+        driveThru.anstellen(secondAuto);
 
         thirdAuto = new Auto(3, "", 800 ,300);
         viewController.draw(thirdAuto);
+        driveThru.anstellen(thirdAuto);
     }
 
     /**
@@ -55,8 +58,10 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-        if(firstAuto.collidesWith(firstDriveThru)){
-            firstAuto.setX(500);
+        driveThru.bewegeAutos(dt);
+        for(Auto item : driveThru.getQueue()){
+            if(item.collidesWith(driveThru))
+                driveThru.stopAutos();
         }
     }
 

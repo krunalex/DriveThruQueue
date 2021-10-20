@@ -6,18 +6,17 @@ import my_project.view.ProgramController;
 
 public class Auto extends GraphicalObject {
 
-    private final int nummer;
+    private int nummer; //TODO Nummer muss noch gefixt werden
     private String bestellung;
     private boolean bedient;
     private boolean bewegtSich;
     private boolean imDriveThru;
 
-    public Auto (int nummer, String bestellung, int x, int y){
+    public Auto (int x, int y){
         randomBestellung();
         this.x = x;
         this.y = y;
-        this.nummer = nummer;
-        this.bestellung = randomBestellung();
+        bestellung = randomBestellung();
         bewegtSich = true;
         imDriveThru = false;
     }
@@ -65,15 +64,10 @@ public class Auto extends GraphicalObject {
     public String randomBestellung() {
         int zufallsZahl = (int) (Math.random() * 3 + 1);
 
-        if (zufallsZahl == 1) {
-            bestellung = "Burger";
-        }
-        if (zufallsZahl == 2) {
-            bestellung = "Pizza";
-        }
-        if (zufallsZahl == 3) {
-            bestellung = "Salat";
-        }
+        if (zufallsZahl == 1) bestellung = "Burger";
+        if (zufallsZahl == 2) bestellung = "Pizza";
+        if (zufallsZahl == 3) bestellung = "Salat";
+
         return bestellung;
     }
 
@@ -95,12 +89,8 @@ public class Auto extends GraphicalObject {
      * @param dt Z&auml;hlt Zeit
      */
     public void bewegeAuto(double dt){
-        if(bewegtSich){
-            x = x - (dt * 120);
-        }
-        if(bedient == true){
-            x = x - (dt * 500);
-        }
+        if(bewegtSich) x = x - (dt * 120);
+        if(bedient) x = x - (dt * 180);
     }
 
     /**

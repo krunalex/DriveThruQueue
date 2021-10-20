@@ -50,24 +50,21 @@ public class DriveThru extends GraphicalObject {
      * @param dt Z&auml;hlt Zeit
      */
     public void bewegeAutos(double dt){
-        for(Auto item : queue)
-            item.bewegeAuto(dt);
+        for(Auto item : queue) item.bewegeAuto(dt);
     }
 
     /**
      * Ruft f&uuml;r alle Autos in der Queue stop auf
      */
     public void stopAutos(){
-        for(Auto item : queue)
-            item.stop();
+        for(Auto item : queue) item.stop();
     }
 
     /**
      * Ruft f&uuml;r alle Autos in der Queue start auf
      */
     public void startAutos(){
-        for(Auto item : queue)
-            item.start();
+        for(Auto item : queue) item.start();
     }
 
     public Queue<Auto> getQueue() {

@@ -22,6 +22,14 @@ public class Auto extends GraphicalObject {
         imDriveThru = false;
     }
 
+    public double getX(){
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
     public boolean isBewegtSich() {
         return bewegtSich;
     }
@@ -88,7 +96,10 @@ public class Auto extends GraphicalObject {
      */
     public void bewegeAuto(double dt){
         if(bewegtSich){
-            x = x - (dt * 60);
+            x = x - (dt * 120);
+        }
+        if(bedient == true){
+            x = x - (dt * 500);
         }
     }
 

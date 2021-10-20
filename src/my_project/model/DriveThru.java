@@ -73,4 +73,5 @@ public class DriveThru extends GraphicalObject {
     public Queue<Auto> getQueue() {
         return queue;
     }
+
 }

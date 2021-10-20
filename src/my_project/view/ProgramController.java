@@ -17,6 +17,11 @@ public class ProgramController {
     private final ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private DriveThru driveThru;
     private Knopf knopf;
+    private Auto firstAuto;
+    private Auto secondAuto;
+    private Auto thirdAuto;
+    private Auto fourthAuto;
+    private Auto fifthAuto;
 
     /**
      * Konstruktor
@@ -36,17 +41,25 @@ public class ProgramController {
         driveThru = new DriveThru(200,200,15,200);
         viewController.draw(driveThru);
 
-        Auto firstAuto = new Auto(1, "", 400, 300);
+        firstAuto = new Auto(1, "", 400, 300);
         viewController.draw(firstAuto);
         driveThru.anstellen(firstAuto);
 
-        Auto secondAuto = new Auto(2, "", 600, 300);
+        secondAuto = new Auto(2, "", 600, 300);
         viewController.draw(secondAuto);
         driveThru.anstellen(secondAuto);
 
-        Auto thirdAuto = new Auto(3, "", 800, 300);
+        thirdAuto = new Auto(3, "", 800, 300);
         viewController.draw(thirdAuto);
         driveThru.anstellen(thirdAuto);
+
+        fourthAuto = new Auto(4,"",1000,300);
+        viewController.draw(fourthAuto);
+        driveThru.anstellen(fourthAuto);
+
+        fifthAuto = new Auto(5, "", 1200, 300);
+        viewController.draw(fifthAuto);
+        driveThru.anstellen(fifthAuto);
 
         knopf = new Knopf(driveThru, viewController);
         viewController.draw(knopf);
@@ -60,13 +73,17 @@ public class ProgramController {
      */
     public void updateProgram(double dt){
         driveThru.bewegeAutos(dt);
-        for(Auto item : driveThru.getQueue()){
-            if(item.collidesWith(driveThru) && !item.isBedient()){
+        for(Auto item : driveThru.getQueue()) {
+            if (item.collidesWith(driveThru) && !item.isBedient()) {
                 driveThru.stopAutos();
                 item.setImDriveThru(true);
                 knopf.bestellungAbschliessen();
             } else {
                 item.setImDriveThru(false);
+            }
+            if(item.getX() < -150){
+                item.setX(1150);
+                item.setBedient(false);
             }
         }
     }
@@ -77,6 +94,5 @@ public class ProgramController {
      * @param e das Objekt enthält alle Informationen zum Klick
      */
     public void mouseClicked(MouseEvent e){
-
     }
 }

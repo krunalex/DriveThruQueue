@@ -1,7 +1,5 @@
 package my_project.view;
 
-import KAGO_framework.control.DatabaseController;
-import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
 import my_project.model.Auto;
 import my_project.model.DriveThru;
@@ -16,12 +14,9 @@ import java.awt.event.MouseEvent;
 public class ProgramController {
 
     // Referenzen
-    private ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private final ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private DriveThru driveThru;
     private Knopf knopf;
-    private Auto firstAuto;
-    private Auto secondAuto;
-    private Auto thirdAuto;
 
     /**
      * Konstruktor
@@ -41,19 +36,19 @@ public class ProgramController {
         driveThru = new DriveThru(200,200,15,200);
         viewController.draw(driveThru);
 
-        firstAuto = new Auto(1, "" , 400 ,300);
+        Auto firstAuto = new Auto(1, "", 400, 300);
         viewController.draw(firstAuto);
         driveThru.anstellen(firstAuto);
 
-        secondAuto = new Auto(2,"", 600 ,300);
+        Auto secondAuto = new Auto(2, "", 600, 300);
         viewController.draw(secondAuto);
         driveThru.anstellen(secondAuto);
 
-        thirdAuto = new Auto(3, "", 800 ,300);
+        Auto thirdAuto = new Auto(3, "", 800, 300);
         viewController.draw(thirdAuto);
         driveThru.anstellen(thirdAuto);
 
-        knopf = new Knopf(firstAuto, viewController);
+        knopf = new Knopf(driveThru, viewController);
         viewController.draw(knopf);
     }
 
@@ -66,9 +61,12 @@ public class ProgramController {
     public void updateProgram(double dt){
         driveThru.bewegeAutos(dt);
         for(Auto item : driveThru.getQueue()){
-            if(item.collidesWith(driveThru)){
+            if(item.collidesWith(driveThru) && !item.isBedient()){
                 driveThru.stopAutos();
-                knopf.bestellungAbschließen();
+                item.setImDriveThru(true);
+                knopf.bestellungAbschliessen();
+            } else {
+                item.setImDriveThru(false);
             }
         }
     }

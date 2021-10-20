@@ -8,12 +8,12 @@ import java.awt.event.KeyEvent;
 
 public class Knopf extends GraphicalObject {
 
-    private ViewController viewController;
-    private Auto auto;
+    private final ViewController viewController;
+    private final DriveThru driveThru;
 
-    public Knopf(Auto auto, ViewController viewController){
+    public Knopf(DriveThru driveThru, ViewController viewController){
         this.viewController = viewController;
-        this.auto = auto;
+        this.driveThru = driveThru;
     }
 
     /**
@@ -26,9 +26,12 @@ public class Knopf extends GraphicalObject {
         drawTool.drawText(117,108, "Bestellung abschließen");
     }
 
-    public void bestellungAbschließen(){
+    public void bestellungAbschliessen(){
         if(viewController.isKeyDown(KeyEvent.VK_SPACE)){
-            auto.start();
+            driveThru.startAutos();
+            for(Auto item : driveThru.getQueue() ){
+                if(item.isImDriveThru()) item.setBedient(true);
+            }
         }
     }
 }

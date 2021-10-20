@@ -6,10 +6,11 @@ import my_project.view.ProgramController;
 
 public class Auto extends GraphicalObject {
 
-    private int nummer;
+    private final int nummer;
     private String bestellung;
     private boolean bedient;
     private boolean bewegtSich;
+    private boolean imDriveThru;
 
     public Auto (int nummer, String bestellung, int x, int y){
         randomBestellung();
@@ -18,6 +19,7 @@ public class Auto extends GraphicalObject {
         this.nummer = nummer;
         this.bestellung = randomBestellung();
         bewegtSich = true;
+        imDriveThru = false;
     }
 
     public boolean isBewegtSich() {
@@ -34,6 +36,18 @@ public class Auto extends GraphicalObject {
 
     public void setBedient(boolean bedient) {
         this.bedient = bedient;
+    }
+
+    public void setImDriveThru(boolean imDriveThru) {
+        this.imDriveThru = imDriveThru;
+    }
+
+    public boolean isImDriveThru() {
+        return imDriveThru;
+    }
+
+    public boolean isBedient() {
+        return bedient;
     }
 
     /**
@@ -74,7 +88,7 @@ public class Auto extends GraphicalObject {
      */
     public void bewegeAuto(double dt){
         if(bewegtSich){
-            x = x - dt * 60;
+            x = x - (dt * 60);
         }
     }
 
@@ -82,8 +96,7 @@ public class Auto extends GraphicalObject {
      * Setzt bewegtSich auf false, wodurch das Auto aufhört sich zu bewegen, auch wenn bewegeAuto aufgerufen wird
      */
     public void stop(){
-        bewegtSich = false;
-        //TODO Einen Parameter für eine Art "immunität" hierzu hinzufügen, damit das Auto nach der Bestellung weiter fahren kann auch wenn es denn DriveThru noch berührt
+        if(!bedient) bewegtSich = false;
     }
 
     /**

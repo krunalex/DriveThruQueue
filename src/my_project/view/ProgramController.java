@@ -5,6 +5,8 @@ import KAGO_framework.control.Drawable;
 import KAGO_framework.control.ViewController;
 import my_project.model.Auto;
 import my_project.model.DriveThru;
+import my_project.model.Knopf;
+
 import java.awt.event.MouseEvent;
 
 /**
@@ -16,6 +18,7 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;// diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private DriveThru driveThru;
+    private Knopf knopf;
     private Auto firstAuto;
     private Auto secondAuto;
     private Auto thirdAuto;
@@ -49,6 +52,9 @@ public class ProgramController {
         thirdAuto = new Auto(3, "", 800 ,300);
         viewController.draw(thirdAuto);
         driveThru.anstellen(thirdAuto);
+
+        knopf = new Knopf(firstAuto, viewController);
+        viewController.draw(knopf);
     }
 
     /**
@@ -60,8 +66,10 @@ public class ProgramController {
     public void updateProgram(double dt){
         driveThru.bewegeAutos(dt);
         for(Auto item : driveThru.getQueue()){
-            if(item.collidesWith(driveThru))
+            if(item.collidesWith(driveThru)){
                 driveThru.stopAutos();
+                knopf.bestellungAbschließen();
+            }
         }
     }
 

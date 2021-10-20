@@ -69,7 +69,7 @@ public class Auto extends GraphicalObject {
     }
 
     /**
-     * Sorgt daf&uuml;r, dass das Auto sich mit 60 pixel pro Sekunde nach links bewegt, sofern die Methode durchgehend aufgerufen wird und bewegtSich true ist
+     * Sorgt daf&uuml;r, dass das Auto sich mit 60 Pixel pro Sekunde nach links bewegt, sofern die Methode durchgehend aufgerufen wird und bewegtSich true ist
      * @param dt Z&auml;hlt Zeit
      */
     public void bewegeAuto(double dt){

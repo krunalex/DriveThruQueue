@@ -41,23 +41,23 @@ public class ProgramController {
         driveThru = new DriveThru(200,200,15,200);
         viewController.draw(driveThru);
 
-        firstAuto = new Auto(400, 300);
+        firstAuto = new Auto(400, 300, 1);
         viewController.draw(firstAuto);
         driveThru.anstellen(firstAuto);
 
-        secondAuto = new Auto(600, 300);
+        secondAuto = new Auto(600, 300, 2);
         viewController.draw(secondAuto);
         driveThru.anstellen(secondAuto);
 
-        thirdAuto = new Auto(800, 300);
+        thirdAuto = new Auto(800, 300, 3);
         viewController.draw(thirdAuto);
         driveThru.anstellen(thirdAuto);
 
-        fourthAuto = new Auto(1000,300);
+        fourthAuto = new Auto(1000,300,4);
         viewController.draw(fourthAuto);
         driveThru.anstellen(fourthAuto);
 
-        fifthAuto = new Auto(1200, 300);
+        fifthAuto = new Auto(1200, 300,5);
         viewController.draw(fifthAuto);
         driveThru.anstellen(fifthAuto);
 
@@ -82,8 +82,11 @@ public class ProgramController {
                 item.setImDriveThru(false);
             }
             if(item.getX() < -150){
+                item.randomBestellung();
                 item.setBedient(false);
-                if(!item.isBewegtSich()) item.setX(1000);
+                if(!item.isBewegtSich())
+                    item.setX(1000);
+                    item.erhoeheNummer();
             }
         }
     }

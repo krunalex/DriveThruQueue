@@ -30,7 +30,8 @@ public class Knopf extends GraphicalObject {
         if(viewController.isKeyDown(KeyEvent.VK_SPACE)){
             driveThru.startAutos();
             for(Auto item : driveThru.getQueue() ){
-                if(item.isImDriveThru()) item.setBedient(true);
+                if(item.isImDriveThru())
+                    item.setBedient(true);
             }
         }
     }

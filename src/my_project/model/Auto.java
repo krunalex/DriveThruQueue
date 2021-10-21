@@ -12,10 +12,11 @@ public class Auto extends GraphicalObject {
     private boolean bewegtSich;
     private boolean imDriveThru;
 
-    public Auto (int x, int y){
+    public Auto (int x, int y, int nummer){
         randomBestellung();
         this.x = x;
         this.y = y;
+        this.nummer = nummer;
         bestellung = randomBestellung();
         bewegtSich = true;
         imDriveThru = false;
@@ -29,12 +30,20 @@ public class Auto extends GraphicalObject {
         this.x = x;
     }
 
-    public boolean isBewegtSich() {
-        return bewegtSich;
+    public void setNummer(int nummer) {
+        this.nummer = nummer;
     }
 
     public int getNummer() {
         return nummer;
+    }
+
+    public void erhoeheNummer(){
+        nummer = getNummer()+4;
+    }
+
+    public boolean isBewegtSich() {
+        return bewegtSich;
     }
 
     public String getBestellung() {
@@ -56,7 +65,6 @@ public class Auto extends GraphicalObject {
     public boolean isBedient() {
         return bedient;
     }
-
     /**
      * Generiert eine zuf&auml;llige Zahl, basierend auf dieser Zahl wird String bestellung auf etwas gesetzt
      * @return bestellung - gibt den wert zur&uuml;ck auf den bestellung gerade gesetzt wurde

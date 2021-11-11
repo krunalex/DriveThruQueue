@@ -1,4 +1,4 @@
-package my_project.control;
+package my_project;
 
 import KAGO_framework.control.MainController;
 

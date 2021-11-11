@@ -1,4 +1,4 @@
-package my_project.control;
+package my_project;
 
 /**
  * In dieser Klasse werden globale, statische Einstellungen verwaltet.
